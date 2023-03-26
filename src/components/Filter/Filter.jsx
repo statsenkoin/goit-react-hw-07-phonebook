@@ -6,12 +6,10 @@ import PropTypes from 'prop-types';
 import { FilterWrapper, FilterInput } from './Filter.styled';
 
 export function Filter() {
-  const filter = useSelector(getFilterValue);
   const dispatch = useDispatch();
+  const filter = useSelector(getFilterValue);
 
-  const onFilter = e => {
-    dispatch(setFilter(e.target.value));
-  };
+  const onFilter = e => dispatch(setFilter(e.target.value));
 
   return (
     <FilterWrapper>
