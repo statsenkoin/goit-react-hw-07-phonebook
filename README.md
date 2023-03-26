@@ -19,4 +19,4 @@
 - Asynk Redux
 
 1. Add selectTestContacts, selectVisibleContacts selectors.
-2.
+2. Remove locale storage Gate
