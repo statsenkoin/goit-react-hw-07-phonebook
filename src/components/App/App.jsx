@@ -1,9 +1,9 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { getContacts } from 'redux/selectors';
+import { getContacts, selectTestContacts } from 'redux/selectors';
 import { addTestData } from 'redux/contactsSlice';
 import PropTypes from 'prop-types';
-import { initialContacts } from 'dataBase';
+// import { initialContacts } from 'dataBase';
 import { Filter, ContactList, FormikForm } from 'components';
 import {
   Layout,
@@ -15,26 +15,14 @@ import {
 
 export function App() {
   const contacts = useSelector(getContacts);
+  const testContacts = useSelector(selectTestContacts);
   const dispatch = useDispatch();
 
-  const addTestContactsList = () => {
-    /**
-     * initialContacts as test data may be added several times
-     * It checks items and prevents adding if some of initialContacts
-     * are in contacts
-     */
-    const newTestContactsList = initialContacts.filter(
-      ({ id: newId }) =>
-        !contacts
-          .reduce((acc, { id: prevId }) => [...acc, prevId], [])
-          .includes(newId)
-    );
-    dispatch(addTestData(newTestContactsList));
-  };
+  const addTestContacts = () => dispatch(addTestData(testContacts));
 
   return (
     <Layout>
-      <button type="button" onClick={addTestContactsList}>
+      <button type="button" onClick={addTestContacts}>
         Add test data
       </button>
       <Title>Phonebook</Title>
