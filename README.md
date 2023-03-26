@@ -15,3 +15,8 @@
 4. npm install @reduxjs/toolkit
 5. npm install @reduxjs/toolkit react-redux
 6. npm i redux-persist
+
+- Asynk Redux
+
+1. Add selectTestContacts, selectVisibleContacts selectors.
+2.

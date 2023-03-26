@@ -3,7 +3,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getContacts, selectTestContacts } from 'redux/selectors';
 import { addTestData } from 'redux/contactsSlice';
 import PropTypes from 'prop-types';
-// import { initialContacts } from 'dataBase';
 import { Filter, ContactList, FormikForm } from 'components';
 import {
   Layout,
@@ -26,7 +25,7 @@ export function App() {
         Add test data
       </button>
       <Title>Phonebook</Title>
-      <FormikForm></FormikForm>
+      <FormikForm />
       <ContactsTitle>Contacts</ContactsTitle>
       {contacts.length ? (
         <ContactListBox>

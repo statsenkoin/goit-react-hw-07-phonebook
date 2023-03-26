@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getContacts, getFilterValue } from 'redux/selectors';
+import { selectVisibleContacts } from 'redux/selectors';
 import { deleteContact } from 'redux/contactsSlice';
 import PropTypes from 'prop-types';
 import {
@@ -10,23 +10,10 @@ import {
 } from './ContactList.styled';
 
 export function ContactList() {
-  const contacts = useSelector(getContacts);
-  const filter = useSelector(getFilterValue);
-
-  const filterContactsByName = () => {
-    const normalizedFilter = filter.toLowerCase();
-    return contacts.filter(({ name }) =>
-      name.toLowerCase().includes(normalizedFilter)
-    );
-  };
-
-  const visibleContacts = filterContactsByName();
-
   const dispatch = useDispatch();
+  const visibleContacts = useSelector(selectVisibleContacts);
 
-  const onClick = contactId => {
-    dispatch(deleteContact(contactId));
-  };
+  const onClick = contactId => dispatch(deleteContact(contactId));
 
   return (
     <ContactListWrapper>
