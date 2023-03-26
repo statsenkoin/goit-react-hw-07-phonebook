@@ -15,8 +15,8 @@ import {
 
 export function App() {
   const contacts = useSelector(getContacts);
-
   const dispatch = useDispatch();
+
   const addTestContactsList = () => {
     /**
      * initialContacts as test data may be added several times
