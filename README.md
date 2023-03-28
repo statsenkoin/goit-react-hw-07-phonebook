@@ -20,3 +20,4 @@
 
 1. Add selectTestContacts, selectVisibleContacts selectors.
 2. Remove locale storage Gate
+3. Add AsyncThunk
