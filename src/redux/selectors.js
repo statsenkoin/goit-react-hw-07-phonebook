@@ -1,11 +1,22 @@
-import { initialContacts } from 'dataBase';
+// import { initialContacts } from 'dataBase';
 
-export const getFilterValue = state => state.filter;
-export const getContacts = state => state.contacts;
+// {
+//   contacts: {
+//     items: [],
+//     isLoading: false,
+//     error: null
+//   },
+//   filter: ""
+// }
+
+export const selectContacts = state => state.contacts.items;
+export const selectIsLoading = state => state.contacts.isLoading;
+export const selectError = state => state.contacts.error;
+export const selectFilterValue = state => state.filter;
 
 export const selectVisibleContacts = state => {
-  const contacts = getContacts(state);
-  const filter = getFilterValue(state);
+  const contacts = selectContacts(state);
+  const filter = selectFilterValue(state);
 
   const normalizedFilter = filter.toLowerCase();
   return contacts.filter(({ name }) =>
@@ -13,13 +24,13 @@ export const selectVisibleContacts = state => {
   );
 };
 
-export const selectTestContacts = state => {
-  const contacts = getContacts(state);
+// export const selectTestContacts = state => {
+//   const contacts = getContacts(state);
 
-  return initialContacts.filter(
-    ({ id: newId }) =>
-      !contacts
-        .reduce((acc, { id: prevId }) => [...acc, prevId], [])
-        .includes(newId)
-  );
-};
+//   return initialContacts.filter(
+//     ({ id: newId }) =>
+//       !contacts
+//         .reduce((acc, { id: prevId }) => [...acc, prevId], [])
+//         .includes(newId)
+//   );
+// };
