@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectVisibleContacts } from 'redux/selectors';
-import { deleteContact } from 'redux/contactsSlice';
+import { deleteContact } from 'redux/operations';
 import PropTypes from 'prop-types';
 import {
   ContactListWrapper,
@@ -13,7 +13,9 @@ export function ContactList() {
   const dispatch = useDispatch();
   const visibleContacts = useSelector(selectVisibleContacts);
 
-  const onClick = contactId => dispatch(deleteContact(contactId));
+  const onClick = contactId => {
+    dispatch(deleteContact(contactId));
+  };
 
   return (
     <ContactListWrapper>
