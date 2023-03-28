@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { getContacts, selectTestContacts } from 'redux/selectors';
-import { addTestData } from 'redux/contactsSlice';
+import { selectContacts, selectError, selectIsLoading } from 'redux/selectors';
+import { fetchContacts } from 'redux/operations';
 import PropTypes from 'prop-types';
 import { Filter, ContactList, FormikForm } from 'components';
 import {
@@ -13,17 +13,17 @@ import {
 } from './App.styled';
 
 export function App() {
-  const contacts = useSelector(getContacts);
-  const testContacts = useSelector(selectTestContacts);
   const dispatch = useDispatch();
+  const contacts = useSelector(selectContacts);
+  const isLoading = useSelector(selectIsLoading);
+  const error = useSelector(selectError);
 
-  const addTestContacts = () => dispatch(addTestData(testContacts));
+  useEffect(() => {
+    dispatch(fetchContacts());
+  }, [dispatch]);
 
   return (
     <Layout>
-      <button type="button" onClick={addTestContacts}>
-        Add test data
-      </button>
       <Title>Phonebook</Title>
       <FormikForm />
       <ContactsTitle>Contacts</ContactsTitle>
@@ -35,6 +35,7 @@ export function App() {
       ) : (
         <Notification>No any contacts in phonebook</Notification>
       )}
+      {isLoading && !error && <h2>Loading...</h2>}
     </Layout>
   );
 }
