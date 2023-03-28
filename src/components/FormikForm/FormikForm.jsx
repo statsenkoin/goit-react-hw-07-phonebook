@@ -19,8 +19,8 @@ const SubmitSchema = Yup.object().shape({
 });
 
 export function FormikForm() {
-  const contacts = useSelector(selectContacts);
   const dispatch = useDispatch();
+  const contacts = useSelector(selectContacts);
 
   const handleSubmit = newContact => {
     const { name: newName } = newContact;
