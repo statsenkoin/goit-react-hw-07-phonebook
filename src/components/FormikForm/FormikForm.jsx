@@ -1,10 +1,9 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addContact } from 'redux/contactsSlice';
-import { getContacts } from 'redux/selectors';
+import { selectContacts } from 'redux/selectors';
+import { addContact } from 'redux/operations';
 import PropTypes from 'prop-types';
 import { Formik, Field } from 'formik';
-import { nanoid } from '@reduxjs/toolkit';
 import * as Yup from 'yup';
 import 'yup-phone-lite';
 import {
@@ -20,7 +19,7 @@ const SubmitSchema = Yup.object().shape({
 });
 
 export function FormikForm() {
-  const contacts = useSelector(getContacts);
+  const contacts = useSelector(selectContacts);
   const dispatch = useDispatch();
 
   const handleSubmit = newContact => {
@@ -43,7 +42,6 @@ export function FormikForm() {
         onSubmit={(values, { resetForm }) => {
           handleSubmit({
             ...values,
-            id: nanoid(8),
           });
           resetForm();
         }}
